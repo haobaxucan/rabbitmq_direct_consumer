@@ -1,0 +1,13 @@
+解耦：
+不需要调用接口，只需要订阅队列中的消息。
+如果需要定价一个红包接口，只需要添加一个消费者订阅消息
+
+消息持久化处理
+value = @Queue(value = "${mq.config.queue.error}",autoDelete = "false")
+使这个临时队列不会自动删除
+
+
+消息ack
+#开启重试次数 默认三次
+spring.rabbitmq.listener.direct.retry.enabled=true
+spring.rabbitmq.listener.direct.retry.max-attempts=5
